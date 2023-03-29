@@ -28,7 +28,7 @@ module.exports.userRegister= async (req,res)=>{
     }
 
 }
-module.exports.userLogin= async (req,res)=>{
+module.exports.userLogin= async (req,res, next)=>{
 
    try{ 
     let data= req.body
@@ -49,7 +49,8 @@ module.exports.userLogin= async (req,res)=>{
         },
         "demon_diamond"
       );
-   return  res.status(200).send({userId:user.id ,token:token, status:true })
+//    return  res.status(200).send({userId:user.id ,token:token, status:true })
+next()
    }
    else{
    return  res.status(404).send({msg:"Not Found" , status:false , redirect_Link:"http://localhost:3000/register"})
